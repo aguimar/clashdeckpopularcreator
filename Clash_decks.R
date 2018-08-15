@@ -3,6 +3,7 @@
 
 library(rvest)
 library(stringr)
+library(dplyr)
 
 clash_top_decks <- read_html("http://statsroyale.com/top/decks")
 
@@ -16,8 +17,8 @@ clash_top_decks <- read_html("http://statsroyale.com/top/decks")
 
 cards <- html_nodes(clash_top_decks, ".popularDecks__decklist a") %>%
     html_attr("href") %>%
-    str_replace("/card/", "")
+    str_replace("https://statsroyale.com/card/", "")
 tbl_cards <- as_tibble(table(cards)) %>%
     arrange(desc(n))
 
-tbl_cards
+print(tbl_cards)
