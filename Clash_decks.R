@@ -16,7 +16,7 @@ popular_decks <- function() {
   
   cards <- html_nodes(clash_top_decks, ".popularDecks__decklist a") %>%
     html_attr("href") %>%
-    str_replace("/card/", "")
+    str_replace("https://statsroyale.com/card/", "")
   tbl_cards <- as_tibble(table(cards)) %>%
     arrange(desc(n))
   
